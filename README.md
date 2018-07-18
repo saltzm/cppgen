@@ -28,28 +28,28 @@ Generating src/mongo/db/s/example\_class\_test.cpp...
 IMPORTANT: Remember to add your .cpp file to a library in src/mongo/db/s/SConscript,
 or create a new one. Also add your unit test to a CppUnitTest definition.
 
-\# Defines a new library for your class. Note that this is not always (or even
-\# usually) recommended.
+# Defines a new library for your class. Note that this is not always (or even
+# usually) recommended.
 env.Library(
-    target='example\_class',
+    target='example_class',
     source=[
-        'example\_class.cpp',
+        'example_class.cpp',
     ],
     LIBDEPS=[
-        '$BUILD\_DIR/mongo/base',
-        \# TODO other libraries you depend on
+        '$BUILD_DIR/mongo/base',
+        # TODO other libraries you depend on
     ],
 )
 
-\# Defines a new unit test target, runnable as ninja +example\_class\_test
+# Defines a new unit test target, runnable as ninja +example\_class\_test
 env.CppUnitTest(
-    target='example\_class\_test',
+    target='example_class_test',
     source=[
-        'example\_class\_test.cpp',
+        'example_class_test.cpp',
     ],
     LIBDEPS=[
-        \# Change to correct library name that contains your cpp file
-        'example\_class',
+        # Change to correct library name that contains your cpp file
+        'example_class',
     ]
 )
 ```
@@ -87,7 +87,7 @@ It will generate the following files:
  *    it in the license file.
  */
 
-\#pragma once
+#pragma once
 
 // TODO: System header includes here
 
@@ -145,16 +145,16 @@ private:
  *    it in the license file.
  */
 
-\#define MONGO\_LOG\_DEFAULT\_COMPONENT ::mongo::logger::LogComponent::kSharding
+#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::kSharding
 
-\#include "mongo/platform/basic.h"
+#include "mongo/platform/basic.h"
 
-\#include "mongo/db/s/example\_class.h"
+#include "mongo/db/s/example_class.h"
 
 // TODO: System includes go here
 
 // TODO: mongo includes go here
-\#include "mongo/util/log.h"
+#include "mongo/util/log.h"
 
 namespace mongo {
 
@@ -208,15 +208,15 @@ ExampleClass& ExampleClass::operator=(ExampleClass &&other) noexcept = default;
  *    it in the license file.
  */
 
-\#include "mongo/platform/basic.h"
+#include "mongo/platform/basic.h"
 
-\#include "mongo/db/s/example\_class.h"
+#include "mongo/db/s/example_class.h"
 
 // TODO: System includes go here
 
 // TODO: Other mongo includes go here
-\#include "mongo/unittest/death\_test.h"
-\#include "mongo/unittest/unittest.h"
+#include "mongo/unittest/death\_test.h"
+#include "mongo/unittest/unittest.h"
 
 namespace mongo {
 namespace {
@@ -229,8 +229,8 @@ private:
 };
 
 // Example test:
-TEST\_F(ExampleClassTest, MyFirstTest) {
-    ASSERT\_EQ(true, false);
+TEST_F(ExampleClassTest, MyFirstTest) {
+    ASSERT_EQ(true, false);
 }
 
 } //namespace
