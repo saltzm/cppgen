@@ -1,9 +1,43 @@
 # cppgen
 A tool for generating C++ .h, .cpp, and test file from a short class description.
 
-An example definition file can be seen in ExampleClass.js.dna. You can define as 
+An example definition file can be seen in ExampleClass.js.dna (copied here for reference). You can define as 
 many classes as you want in the definition file and files for each of them will be 
 generated when you run the tool.
+
+```js
+// Classes
+var def = {
+    ExampleClass : {
+        namespace : "mongo",
+        // The directory inside the "src" directory where the files will
+        // go. Make sure to include the trailing "/".
+        directory : "mongo/db/s/",
+        // Whether or not an object of this class should be copyable.
+        // Affects the declaration and definition of copy constructors.
+        copyable : true,
+        // Whether or not an object of this class should be moveable.
+        // Affects the declaration and definition of move constructors.
+        moveable : true,
+        // If false, marks the class final. If true, marks the destructor 
+        // virtual.
+        virtual : false,
+        // Which log component the class will use.
+        logComponent : "Sharding",
+    },
+    // You can create as many classes as you want by listing more here
+    // ExampleClass2 : {
+    //    namespace : "mongo",
+    //    directory : "mongo/util/",
+    //    copyable : false,
+    //    moveable : true,
+    //    virtual : false,
+    //    logComponent : "Sharding",
+    // },
+}
+
+./!include("cppgen.js.dna")
+```
 
 This was hacked together quickly and will likely be refined overtime. Code is
 generated using the [ribosome tool](http://sustrik.github.io/ribosome/index.html).
