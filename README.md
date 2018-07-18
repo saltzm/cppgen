@@ -181,7 +181,7 @@ ExampleClass& ExampleClass::operator=(ExampleClass &&other) noexcept = default;
 } //namespace mongo
 ```
 
-### src/mongo/db/s/example\_class.cpp: 
+### src/mongo/db/s/example\_class\_test.cpp: 
 
 ```cpp
 /**
