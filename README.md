@@ -41,7 +41,7 @@ env.Library(
     ],
 )
 
-# Defines a new unit test target, runnable as ninja +example\_class\_test
+# Defines a new unit test target, runnable as ninja +example_class_test
 env.CppUnitTest(
     target='example_class_test',
     source=[
@@ -215,7 +215,7 @@ ExampleClass& ExampleClass::operator=(ExampleClass &&other) noexcept = default;
 // TODO: System includes go here
 
 // TODO: Other mongo includes go here
-#include "mongo/unittest/death\_test.h"
+#include "mongo/unittest/death_test.h"
 #include "mongo/unittest/unittest.h"
 
 namespace mongo {
