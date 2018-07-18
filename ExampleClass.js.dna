@@ -18,15 +18,14 @@ var def = {
         logComponent : "Sharding",
     },
     // You can create as many classes as you want by listing more here
-    ExampleClass2 : {
-        namespace : "mongo",
-        // Make sure to include the trailing "/"
-        directory : "mongo/util/",
-        copyable : false,
-        moveable : true,
-        virtual : false,
-        logComponent : "Sharding",
-    },
+    // ExampleClass2 : {
+    //    namespace : "mongo",
+    //    directory : "mongo/util/",
+    //    copyable : false,
+    //    moveable : true,
+    //    virtual : false,
+    //    logComponent : "Sharding",
+    // },
 }
 
 ./!include("cppgen.js.dna")
