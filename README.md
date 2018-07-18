@@ -1,8 +1,9 @@
 # cppgen
 A tool for generating C++ .h, .cpp, and test file from a short class description.
 
-You can define as many classes as you want in the definition file and files for 
-each of them will be generated when you run the tool.
+An example definition file can be seen in ExampleClass.js.dna. You can define as 
+many classes as you want in the definition file and files for each of them will be 
+generated when you run the tool.
 
 This was hacked together quickly and will likely be refined overtime. Code is
 generated using the [ribosome tool](http://sustrik.github.io/ribosome/index.html).
