@@ -57,17 +57,18 @@ directory of your checkout of the mongo repo and run:
 ```
 $ node ribosome.js ExampleClass.js.dna
 
+
 Generating src/mongo/db/s/example_class.h...
-Done.
 Generating src/mongo/db/s/example_class.cpp...
-Done.
 Generating src/mongo/db/s/example_class_test.cpp...
 
 IMPORTANT: Remember to add your .cpp file to a library in src/mongo/db/s/SConscript,
 or create a new one. Also add your unit test to a CppUnitTest definition.
+Creating new libraries just for your new files is NOT recommended for
+production, but may be helpful for getting started.
 
-# Defines a new library for your class. Note that this is not always (or even
-# usually) recommended.
+# Defines a new library for your class. Note that this is not recommended,
+# and that you should probably add your cpp file to an existing library.
 env.Library(
     target='example_class',
     source=[
