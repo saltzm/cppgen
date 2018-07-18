@@ -1,6 +1,9 @@
 # cppgen
 A tool for generating C++ .h, .cpp, and test file from a short class description.
 
+You can define as many classes as you want in the definition file and files for 
+each of them will be generated when you run the tool.
+
 This was hacked together quickly and will likely be refined overtime. Code is
 generated using the [ribosome tool](http://sustrik.github.io/ribosome/index.html).
 The source for this tool, ribosome.js, is included here for convenience.
@@ -8,9 +11,11 @@ The source for this tool, ribosome.js, is included here for convenience.
 This requires node to be installed on your machine.
 
 To use, clone this repo, and copy the files ribosome.js, cppgen.js.dna, and
-copyright.js.dna into the root directory of your checkout of the mongo repo.  
-**Warning: There is currently no check to see if the files exist or not. If 
-you regenerate a file, it will overwrite any existing files, so be careful!!!**
+copyright.js.dna into the root directory of your checkout of the mongo repo.
+
+**WARNING: When running the tool, there is currently no check to see if the 
+files exist or not. If you regenerate a file, it will overwrite any existing 
+files, so be careful!!!**
 
 To run the tool with the example given, copy ExampleClass.js.dna into the root
 directory of your checkout of the mongo repo and run:
