@@ -21,11 +21,7 @@ files, so be careful!!!**
 To run the tool with the example given, copy ExampleClass.js.dna into the root
 directory of your checkout of the mongo repo and run:
 ```
-node ribosome.js ExampleClass.js.dna
-```
-
-The output should look like:
-```
+$ node ribosome.js ExampleClass.js.dna
 
 Generating src/mongo/db/s/example_class.h...
 Done.
