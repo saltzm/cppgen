@@ -2,22 +2,31 @@
 var def = {
     ExampleClass : {
         namespace : "mongo",
-        // Make sure to include the trailing "/"
+        // The directory inside the "src" directory where the files will
+        // go. Make sure to include the trailing "/".
         directory : "mongo/db/s/",
+        // Whether or not an object of this class should be copyable.
+        // Affects the declaration and definition of copy constructors.
         copyable : true,
+        // Whether or not an object of this class should be moveable.
+        // Affects the declaration and definition of move constructors.
+        moveable : true,
+        // If false, marks the class final. If true, marks the destructor 
+        // virtual.
+        virtual : false,
+        // Which log component the class will use.
+        logComponent : "Sharding",
+    },
+    // You can create as many classes as you want by listing more here
+    ExampleClass2 : {
+        namespace : "mongo",
+        // Make sure to include the trailing "/"
+        directory : "mongo/util/",
+        copyable : false,
         moveable : true,
         virtual : false,
         logComponent : "Sharding",
-    }
+    },
 }
 
 ./!include("cppgen.js.dna")
-
-//def.FooBar = {
-//    namespace : "mongo",
-//    directory : "mongo/db/s",
-//    copyable : false,
-//    moveable : false,
-//    virtual : true,
-//    logComponent : "Sharding",
-//}
