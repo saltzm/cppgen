@@ -1,0 +1,178 @@
+
+./!include("copyright.js.dna")
+
+var camelToSnake = function(str) {
+    return str.split(/(?=[A-Z])/).join('_').toLowerCase(); 
+}
+.
+Object.entries(def).forEach(([class_name, class_props]) => {
+    snake_class_name = camelToSnake(class_name)
+    header_include_path = class_props.directory + snake_class_name + ".h"
+    header_file = "src/" + header_include_path 
+    cpp_file = "src/" + class_props.directory + snake_class_name + ".cpp"
+    test_file = "src/" + class_props.directory + snake_class_name + "_test.cpp"
+    scons_file = "src/" + class_props.directory + "SConscript"
+.Generating @{header_file}...
+
+./!output(header_file)
+.@{copyright}
+.
+.#pragma once
+.
+.// TODO: System header includes here
+.
+.// TODO: mongo header includes here
+    if (!class_props.copyable) {
+.#include "mongo/base/disallow_copying.h"
+    }
+.
+.
+.namespace @{class_props.namespace} {
+.
+.class @{class_name}
+    if (!class_props.virtual) {
+./+ final
+    }
+./+ {
+    if (!class_props.copyable) {
+.    MONGO_DISALLOW_COPYING(@{class_name});
+    }
+.public:
+.    @{class_name}(/*TODO: Parameters here*/);
+    if (class_props.virtual) {
+.    virtual $
+    } else {
+.    $
+    }
+./+~@{class_name}();
+.
+    if (class_props.copyable) {
+.    @{class_name}(const @{class_name} &other);
+.    @{class_name}& operator=(const @{class_name} &other);
+.
+    }
+    if (class_props.moveable) {
+.    @{class_name}(@{class_name} &&source) noexcept;
+.    @{class_name}& operator=(@{class_name} &&other) noexcept;
+    } else {
+.    @{class_name}(@{class_name} &&source) = delete;
+.    @{class_name}& operator=(@{class_name} &&other) = delete;
+    }
+.
+.private:
+.   // TODO: Data members here
+.};
+.
+.} //namespace mongo
+
+./!stdout()
+.Done.
+.Generating @{cpp_file}...
+
+// CLASS FILE (.cpp)
+./!output(cpp_file)
+.@{copyright}
+.
+.#define MONGO_LOG_DEFAULT_COMPONENT ::mongo::logger::LogComponent::k@{class_props.logComponent}
+.
+.#include "mongo/platform/basic.h"
+.
+.#include "@{header_include_path}"
+.
+.// TODO: System includes go here
+.
+.// TODO: mongo includes go here
+.#include "mongo/util/log.h"
+.
+.namespace mongo {
+.
+.namespace {
+.//TODO Helper functions and constants go here
+.} //namespace
+.
+.@{class_name}::@{class_name}() = default;
+.
+.@{class_name}::~@{class_name}() = default;
+.
+    if (class_props.copyable) {
+.@{class_name}::@{class_name}(const @{class_name} &other) = default;
+.
+.@{class_name}& @{class_name}::operator=(const @{class_name} &other) = default;
+.
+    }
+    if (class_props.moveable) {
+.@{class_name}::@{class_name}(@{class_name} &&source) noexcept = default;
+.
+.@{class_name}& @{class_name}::operator=(@{class_name} &&other) noexcept = default;
+    } 
+.
+.} //namespace mongo
+
+./!stdout()
+.Done.
+.Generating @{test_file}...
+
+// TEST FILE (_test.cpp)
+./!output(test_file)
+.@{copyright}
+.
+.#include "mongo/platform/basic.h"
+.
+.#include "@{header_include_path}"
+.
+.// TODO: System includes go here
+.
+.// TODO: Other mongo includes go here
+.#include "mongo/unittest/death_test.h"
+.#include "mongo/unittest/unittest.h"
+.
+.namespace mongo {
+
+.namespace {
+.
+.class @{class_name}Test : public unittest::Test {
+.public:
+.    void setUp() override {}
+.    void tearDown() override {}
+.private:
+.};
+.
+.// Example test:
+.TEST_F(@{class_name}Test, MyFirstTest) {
+.    ASSERT_EQ(true, false);
+.}
+.
+.} //namespace
+.} //namespace mongo
+
+./!stdout()
+.
+.IMPORTANT: Remember to add your .cpp file to a library in @{scons_file}, 
+.or create a new one. Also add your unit test to a CppUnitTest definition. 
+.
+.# Defines a new library for your class. Note that this is not always (or even
+.# usually) recommended. 
+.env.Library(
+.    target='@{snake_class_name}',
+.    source=[
+.        '@{snake_class_name}.cpp',
+.    ],
+.    LIBDEPS=[
+.        '$BUILD_DIR/mongo/base',
+.        # TODO other libraries you depend on
+.    ],
+.)
+.
+.# Defines a new unit test target, runnable as ninja +@{snake_class_name}_test
+.env.CppUnitTest(
+.    target='@{snake_class_name}_test',
+.    source=[
+.        '@{snake_class_name}_test.cpp',
+.    ],
+.    LIBDEPS=[
+.        # Change to correct library name that contains your cpp file
+.        '@{snake_class_name}', 
+.    ]
+.)
+.
+})
