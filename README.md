@@ -9,8 +9,8 @@ This requires node to be installed on your machine.
 
 To use, clone this repo, and copy the files ribosome.js, cppgen.js.dna, and
 copyright.js.dna into the root directory of your checkout of the mongo repo.  
-*Warning: There is currently no check to see if the files exist or not. If 
-you regenerate a file, it will overwrite any existing files, so be careful!!!*
+**Warning: There is currently no check to see if the files exist or not. If 
+you regenerate a file, it will overwrite any existing files, so be careful!!!**
 
 To run the tool with the example given, copy ExampleClass.js.dna into the root
 directory of your checkout of the mongo repo and run:
